@@ -10,7 +10,7 @@ void InitGPIO(void)
 
     GPIO_InitTypeDef ledGPIO;
     ledGPIO.GPIO_Mode = GPIO_Mode_Out_PP;
-    ledGPIO.GPIO_Pin = LED_R_PIN | LED_G_PIN | LED_B_PIN;
+    ledGPIO.GPIO_Pin = LED_G_PIN;
     ledGPIO.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOB, &ledGPIO);
 

@@ -21,12 +21,10 @@ int main(void)
 	InitGPIO();
 
 	while (1) {
-		R();
 		delay_us(300 * 1000);
-		G();
+		GPIO_ResetBits(GPIOB, LED_G_PIN);
 		delay_us(300 * 1000);
-		B();
-		delay_us(300 * 1000);
+		GPIO_SetBits(GPIOB, LED_G_PIN);
 	}
 
 	return 0;
