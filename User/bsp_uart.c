@@ -59,3 +59,19 @@ void UARTSendBytes(uint8_t ch[], size_t size)
         UARTSend(ch[i]);
     }
 }
+
+void vprint(const char *fmt, va_list argp)
+{
+    char buf[256] = {0};
+    if (vsprintf(buf, fmt, argp) > 0) {
+        UARTSendBytes((uint8_t*)buf, strlen(buf));
+    }
+}
+
+void uart_printf(const char *fmt, ...)
+{
+    va_list argp;
+    va_start(argp, fmt);
+    vprint(fmt, argp);
+    va_end(argp);
+}

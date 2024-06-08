@@ -50,6 +50,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     ./User/bsp_uart.c
     ./User/delay.c
+    ./User/bsp_led.c
+    ./User/main.c
 )
 
 # Add include paths
