@@ -156,5 +156,17 @@ void SysTick_Handler(void)
   * @}
   */ 
 
+void USART1_IRQHandler(void)
+{
+    if (USART_GetFlagStatus(USART1, USART_FLAG_RXNE)) {
+        uint16_t ch = USART_ReceiveData(USART1);
+
+        USART_SendData(USART1, ch);
+        while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET) {
+            
+        }
+    }
+}
+
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

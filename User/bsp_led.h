@@ -8,7 +8,7 @@
 #define LED_G_PIN GPIO_Pin_0
 #define LED_B_PIN GPIO_Pin_1
 
-void InitGPIO(void);
+void InitLedGPIO(void);
 
 #define R()                 \
     GPIOB->ODR = 0xffffffff;         \

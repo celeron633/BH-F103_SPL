@@ -2,31 +2,24 @@
 #include "stm32f10x.h"
 
 #include "bsp_led.h"
-
-void delay_us(uint32_t us)
-{
-	volatile uint32_t i;
-	volatile uint32_t j;
-	
-	for (i = 0; i < us; i++) {
-		j = 11;
-		while (j != 0) {
-			j--;
-		}
-	}
-}
+#include "bsp_uart.h"
+#include "delay.h"
 
 int main(void)
 {
-	InitGPIO();
+	InitLedGPIO();
+	InitUART();
+
+	printf("hello world\n");
 
 	while (1) {
 		R();
-		delay_us(300 * 1000);
+		delay_us(100 * 1000);
 		G();
-		delay_us(300 * 1000);
+		delay_us(100 * 1000);
 		B();
-		delay_us(300 * 1000);
+		UARTSend('1');
+		delay_us(100 * 1000);
 	}
 
 	return 0;

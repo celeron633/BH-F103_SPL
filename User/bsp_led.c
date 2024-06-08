@@ -4,7 +4,7 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_i2c.h"
 
-void InitGPIO(void)
+void InitLedGPIO(void)
 {
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 
