@@ -60,18 +60,16 @@ void UARTSendBytes(uint8_t ch[], size_t size)
     }
 }
 
-void vprint(const char *fmt, va_list argp)
+void uprintf(const char *fmt, ...)
 {
     char buf[256] = {0};
-    if (vsprintf(buf, fmt, argp) > 0) {
-        UARTSendBytes((uint8_t*)buf, strlen(buf));
-    }
-}
 
-void uart_printf(const char *fmt, ...)
-{
     va_list argp;
     va_start(argp, fmt);
-    vprint(fmt, argp);
+    int sLen = vsprintf(buf, fmt, argp);
     va_end(argp);
+
+    if (sLen > 0) {
+        UARTSendBytes((uint8_t *)buf, sLen);
+    }
 }

@@ -10,8 +10,7 @@ int main(void)
 	InitLedGPIO();
 	InitUART();
 
-	// printf("hello world\n");
-	uart_printf("hello world\n");
+	uprintf("hello world\n");
 
 	while (1) {
 		R();

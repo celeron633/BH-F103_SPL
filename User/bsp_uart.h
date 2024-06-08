@@ -16,7 +16,6 @@ void InitUART();
 void UARTSend(uint8_t ch);
 void UARTSendBytes(uint8_t ch[], size_t size);
 
-void vprint(const char *fmt, va_list argp);
-void uart_printf(const char *fmt, ...);
+void uprintf(const char *fmt, ...);
 
 #endif
