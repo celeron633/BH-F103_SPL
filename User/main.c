@@ -23,6 +23,9 @@ int main(void)
 		delay_ms(250);
 		tm1637DisplayInt(count);
 		count++;
+		if (count >= 9999) {
+			count = 0;
+		}
 	}
 
 	return 0;
