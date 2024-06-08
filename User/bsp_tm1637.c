@@ -87,8 +87,13 @@ void tm1637Display(const char *dat, size_t len)
     }
 
     uint8_t num2Display[4] = {0};
-    for (int i = 0; i < 4; i++) {
-        uint8_t idx = (dat[i] - '0');
+    for (size_t i = 0; i < 4; i++) {
+        uint8_t idx = 0;
+        if (len >= i + 1) {
+            idx = (dat[i] - '0');
+        } else {
+            idx = 0;
+        }
         if (idx > sizeof(digitMap)/sizeof(digitMap[0])) {
             idx = 0;
         }
@@ -120,4 +125,14 @@ void tm1637Display(const char *dat, size_t len)
     tm1637Write(0x8c);
     tm1637WaitACK();
     tm1637Stop();
+}
+
+void tm1637DisplayInt(int i)
+{
+    char buf[8] = {0};
+    if (!itoa(i, buf, 10)) {
+        tm1637Display("0000", 4);
+    }
+    int len = strlen(buf);
+    tm1637Display(buf, len);
 }

@@ -6,6 +6,8 @@
 #include "bsp_tm1637.h"
 #include "delay.h"
 
+int count = 0;
+
 int main(void)
 {
 	InitLedGPIO();
@@ -19,6 +21,8 @@ int main(void)
 		delay_ms(250);
 		R();
 		delay_ms(250);
+		tm1637DisplayInt(count);
+		count++;
 	}
 
 	return 0;
