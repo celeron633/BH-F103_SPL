@@ -51,6 +51,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ./User/bsp_uart.c
     ./User/delay.c
     ./User/bsp_led.c
+    ./User/bsp_tm1637.c
     ./User/main.c
 )
 

@@ -6,6 +6,7 @@
         "delay.h": "c",
         "stdint.h": "c",
         "bsp_uart.h": "c",
-        "bsp_led.h": "c"
+        "bsp_led.h": "c",
+        "stm32f10x_i2c.h": "c"
     }
 }

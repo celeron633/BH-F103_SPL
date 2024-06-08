@@ -3,23 +3,22 @@
 
 #include "bsp_led.h"
 #include "bsp_uart.h"
+#include "bsp_tm1637.h"
 #include "delay.h"
 
 int main(void)
 {
 	InitLedGPIO();
 	InitUART();
+	tm1637Init();
 
 	uprintf("hello world\n");
-
+	tm1637Display("0000", 4);
 	while (1) {
-		R();
-		delay_us(100 * 1000);
 		G();
-		delay_us(100 * 1000);
-		B();
-		UARTSend('1');
-		delay_us(100 * 1000);
+		delay_ms(250);
+		R();
+		delay_ms(250);
 	}
 
 	return 0;
