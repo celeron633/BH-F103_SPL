@@ -12,16 +12,16 @@ void InitGPIO(void);
 
 #define R()                 \
     GPIOB->ODR = 0xffffffff;         \
-    GPIOB->ODR &= (uint32_t)0b011111;
+    GPIOB->ODR &= (uint32_t)0x1f;   // 1f: 0b011111
 
 
 #define G()                 \
     GPIOB->ODR = 0xffffffff;         \
-    GPIOB->ODR &= (uint32_t)0b111110;
+    GPIOB->ODR &= (uint32_t)0x3e;   // 3e: 0b111110
 
 
 #define B()                 \
     GPIOB->ODR = 0xffffffff;         \
-    GPIOB->ODR &= (uint32_t)0b111101;
+    GPIOB->ODR &= (uint32_t)0x3d;   // 3d: 0b111101
 
 #endif
