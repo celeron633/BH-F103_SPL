@@ -1,32 +1,29 @@
 #include <stdint.h>
 #include "stm32f10x.h"
 
-#include "bsp_led.h"
 #include "bsp_uart.h"
-#include "bsp_tm1637.h"
+#include "bsp_oled.h"
 #include "delay.h"
-
-int count = 0;
 
 int main(void)
 {
-	InitLedGPIO();
-	InitUART();
-	tm1637Init();
+	oledPeriphInit();
+	oledInit();
 
-	uprintf("hello world\n");
-	tm1637Display("0000", 4);
-	while (1) {
-		G();
-		delay_ms(250);
-		R();
-		delay_ms(250);
-		tm1637DisplayInt(count);
-		count++;
-		if (count >= 9999) {
-			count = 0;
-		}
+	delay_ms(100);
+	oledFill(0xff);
+	delay_ms(100);
+	oledFill(0x00);
+
+	// oledShowChar(0, 0, 'a');
+	// oledShowString(0, 0, (char *)"hello world1234567890123456");
+	oledShowChineseTest(0, 0);
+
+	while (1)
+	{
+		
 	}
+	
 
 	return 0;
 }

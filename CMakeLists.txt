@@ -54,6 +54,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ./User/bsp_tm1637.c
     ./User/bsp_oled.c
     ./User/main.c
+    ./User/oled_font.c
 )
 
 # Add include paths

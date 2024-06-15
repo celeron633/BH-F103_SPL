@@ -12,8 +12,19 @@
 #define OLED_SDA_PIN    GPIO_Pin_11
 #define OLED_SCK_PIN    GPIO_Pin_10
 
-void InitOLED();
-void WriteByte(uint8_t d);
-void WriteData(uint8_t *d, size_t len);
+void oledPeriphInit();
+void i2cWriteByte(uint8_t regAddr, uint8_t data);
+
+void oledInit(void);
+void oledWriteCmd(uint8_t cmd);
+void oledWriteData(uint8_t data);
+void oledSetPos(uint8_t x, uint8_t y);
+void oledFill(uint8_t data);
+void oledPrint(uint8_t x, uint8_t y, const char *str);
+void oledPrintTest(uint8_t x, uint8_t y, uint8_t off);
+void oledShowChar(uint8_t x, uint8_t y, char c);
+void oledShowString(uint8_t x, uint8_t y, char str[]);
+
+void oledShowChineseTest(uint8_t x, uint8_t y);
 
 #endif
