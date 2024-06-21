@@ -4,6 +4,7 @@
 #include "bsp_led.h"
 #include "bsp_uart.h"
 #include "bsp_tm1637.h"
+#include "bsp_ds18b20.h"
 #include "delay.h"
 
 int count = 0;
@@ -12,20 +13,20 @@ int main(void)
 {
 	InitLedGPIO();
 	InitUART();
-	tm1637Init();
-
+	
 	uprintf("hello world\n");
-	tm1637Display("0000", 4);
+
+	// 初始化ds18b20的GPIO
+	ds18b20Init();
+	if (ds18b20Reset() < 0) {
+		uprintf("ds18b20 init failed!\n");
+	} else {
+		uprintf("ds18b20 init success!\n");
+	}
+
+
 	while (1) {
-		G();
-		delay_ms(250);
-		R();
-		delay_ms(250);
-		tm1637DisplayInt(count);
-		count++;
-		if (count >= 9999) {
-			count = 0;
-		}
+		
 	}
 
 	return 0;

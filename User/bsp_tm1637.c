@@ -130,9 +130,11 @@ void tm1637Display(const char *dat, size_t len)
 void tm1637DisplayInt(int i)
 {
     char buf[8] = {0};
-    if (!itoa(i, buf, 10)) {
+    /* if (!itoa(i, buf, 10)) {
         tm1637Display("0000", 4);
-    }
+    } */
+
+    snprintf(buf, sizeof(buf), "%04d", i);
     int len = strlen(buf);
     tm1637Display(buf, len);
 }

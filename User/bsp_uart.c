@@ -45,6 +45,8 @@ void InitUART()
 
 void UARTSend(uint8_t ch)
 {
+    // 这个要先reset, 不然第一个byte丢失
+    USART_ClearFlag(USART1, USART_FLAG_TC);
     USART_SendData(USART1, ch);
     while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
     {
