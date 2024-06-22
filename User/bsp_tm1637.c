@@ -29,9 +29,9 @@ void tm1637Start(void)
 {
     // 开始：CLK有效的情况下，DIO从高到低
     CLK_H();
-    delay_us(2);
+    delay_us2(2);
     DIO_H();
-    delay_us(2);
+    delay_us2(2);
     DIO_L();
 }
 
@@ -39,11 +39,11 @@ void tm1637Stop(void)
 {
     // 结束：时钟有效的情况下，DIO从低到高
     CLK_L();
-    delay_us(2);
+    delay_us2(2);
     DIO_L();
-    delay_us(2);
+    delay_us2(2);
     CLK_H();
-    delay_us(2);
+    delay_us2(2);
     DIO_H();
 }
 
@@ -51,7 +51,7 @@ void tm1637Write(uint8_t dat)
 {
     for (int i = 0; i < 8; i++) {
         CLK_L();
-        delay_us(3);
+        delay_us2(3);
         if ((dat & 0x01) == 1) {
             DIO_H();
         } else {
@@ -59,7 +59,7 @@ void tm1637Write(uint8_t dat)
         }
         dat = (dat >> 1);
         CLK_H();
-        delay_us(3);
+        delay_us2(3);
     }
 }
 
@@ -68,13 +68,13 @@ void tm1637WaitACK(void)
     DIO_IN();
 
     CLK_L();
-    delay_us(5);
+    delay_us2(5);
     // 等待TM1637将DIO拉高
     while (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5) == 1) {
 
     }
     CLK_H();
-    delay_us(2);
+    delay_us2(2);
     CLK_L();
 
     DIO_OUT();
