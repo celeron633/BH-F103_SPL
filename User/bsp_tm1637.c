@@ -80,7 +80,7 @@ void tm1637WaitACK(void)
     DIO_OUT();
 }
 
-void tm1637Display(const char *dat, size_t len)
+void tm1637Display(const char *dat, size_t len, int withColon)
 {
     if (len > 4) {
         len = 4;
@@ -98,7 +98,6 @@ void tm1637Display(const char *dat, size_t len)
             idx = 0;
         }
         num2Display[i] = digitMap[idx];
-        // uprintf("dat[%c] idx is %d\n", dat[i], idx);
     }
 
     // 设置模式
@@ -110,19 +109,23 @@ void tm1637Display(const char *dat, size_t len)
 
     // 设置首地址
     tm1637Start();
-    tm1637Write(0xc0);
+    tm1637Write(0xC0);
     tm1637WaitACK();
 
     // 显示
     for (int i = 0; i < 4; i++) {
-        tm1637Write(num2Display[i]);
+        if (withColon > 0) {
+            tm1637Write(num2Display[i]+0x80);
+        } else {
+            tm1637Write(num2Display[i]);
+        }
         tm1637WaitACK();
     }
     tm1637Stop();
 
     // 亮度
     tm1637Start();
-    tm1637Write(0x8c);
+    tm1637Write(0x8C);
     tm1637WaitACK();
     tm1637Stop();
 }
@@ -136,5 +139,5 @@ void tm1637DisplayInt(int i)
 
     snprintf(buf, sizeof(buf), "%04d", i);
     int len = strlen(buf);
-    tm1637Display(buf, len);
+    tm1637Display(buf, len, 0);
 }

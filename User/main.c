@@ -34,7 +34,7 @@ int main(void)
 		uprintf("temp is [%.2f]\n", temp * 0.0625);
 		int temp2 = (int)(temp * 0.0625 * 100);
 		sprintf(buf, "%04d", temp2);
-		tm1637Display(buf, strlen(buf));
+		tm1637Display(buf, strlen(buf), 1);
 	}
 
 	return 0;
