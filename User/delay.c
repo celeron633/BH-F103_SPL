@@ -1,6 +1,8 @@
 
 #include "delay.h"
 
+
+
 void delay_us(uint32_t us)
 {
 	volatile uint32_t i;
@@ -17,4 +19,17 @@ void delay_us(uint32_t us)
 void delay_ms(uint32_t ms)
 {
 	delay_us(ms * 1000);
+}
+
+void delay_us2(uint32_t us)
+{
+	// 设置要等待的周期数
+	SysTick_Config(SystemCoreClock/1000000);
+
+	for (uint32_t i = 0; i < us; i++) {
+		while (!((SysTick->CTRL) & (1 << 16)));
+	}
+
+	// 关闭定时器
+	SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
 }

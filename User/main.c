@@ -25,8 +25,12 @@ int main(void)
 	}
 
 
+	int temp = ds18b20ReadTemperature();
+	uprintf("temp is [%.2f]\n", temp * 0.0625);
+
+
 	while (1) {
-		
+		delay_ms(100);
 	}
 
 	return 0;

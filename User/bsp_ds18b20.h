@@ -18,8 +18,10 @@ void ds18b20Init();
 int ds18b20Reset();
 int ds18b20WaitAck();
 
-void writeByte(uint8_t d);
-uint8_t readByte(void);
+void ds18b20WriteByte(uint8_t d);
+uint8_t ds18b20readByte(void);
+
+int ds18b20ReadTemperature(void);
 
 
 #define DQ_IN()  DS18B20_GPIO->CRH &= 0xFFFFF0FF; DS18B20_GPIO->CRH |= 0x4 << 8
